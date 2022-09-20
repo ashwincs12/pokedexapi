@@ -21,9 +21,9 @@ const getPokeinfo=(pokiNo)=>
   .then(json=>
     {
       console.log('Name: ',json.name)
-      document.getElementById('pokiname').innerText=json.name
+      document.getElementById('pokiname').innerText=json.name.toUpperCase()
       console.log('Ability: ',json.abilities[0].ability.name)
-      document.getElementById('pokistat').innerText=json.abilities[0].ability.name
+      document.getElementById('pokistat').innerText=`✨Abilitiy : ${json.abilities[0].ability.name.toUpperCase()}`
       console.log('PokiIndex: ',json.game_indices[3].game_index)
       pokiindex=json.game_indices[3].game_index
       getPokiimg(pokiindex)
@@ -34,3 +34,21 @@ const getRandomPoke=()=>
   {
     let randomno=Math.floor(Math.random()*100)
     getPokeinfo(randomno)
+    
+  }
+const getSearched=(pokiname)=>
+  {
+    pokiindex=getPokeinfo(pokiname)
+  }
+
+
+newpokidiv.onclick=()=>
+{
+  getRandomPoke()
+}
+searchpokiDiv.onclick=()=>
+  {
+    getSearched(searchInputdiv.value)
+  }
+
+
